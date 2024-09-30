@@ -68,6 +68,10 @@
 
     <button class="btn btn-success action-btn" onclick="confirmWin()">Bevestig Winnaar</button>
     <button class="btn btn-warning action-btn" onclick="undo()">Ongedaan maken</button>
+    
+    <!-- Nieuwe knoppen voor het ongedaan maken van de laatste score en het resetten van alle scores -->
+    <button class="btn btn-danger action-btn" onclick="undoLastScore()">Ongedaan maken laatste score</button>
+    <button class="btn btn-secondary action-btn" onclick="resetScores()">Reset alle scores</button>
 
     <h3 class="text-secondary mt-4">Individuele Scores</h3>
     <ul id="scoreboard" class="list-unstyled">
@@ -75,58 +79,6 @@
     </ul>
   </div>
 
-  <script>
-    let selectedPlayers = [];
-    let scores = JSON.parse(localStorage.getItem('scores')) || {
-      Dre: 0,
-      Ben: 0,
-      CP: 0,
-      Jokke: 0,
-      Swerts: 0
-    };
-
-    function selectPlayer(player) {
-      if (selectedPlayers.length < 2 && !selectedPlayers.includes(player)) {
-        selectedPlayers.push(player);
-        document.getElementById('selected-players').innerText = `Geselecteerde spelers: ${selectedPlayers.join(' en ')}`;
-      }
-    }
-
-    function confirmWin() {
-      if (selectedPlayers.length === 2) {
-        scores[selectedPlayers[0]] += 1;
-        scores[selectedPlayers[1]] += 1;
-        updateScoreboard();
-        saveScores();
-        selectedPlayers = [];
-        document.getElementById('selected-players').innerText = 'Geselecteerde spelers: ';
-      } else {
-        alert("Selecteer twee spelers!");
-      }
-    }
-
-    function undo() {
-      selectedPlayers = [];
-      document.getElementById('selected-players').innerText = 'Geselecteerde spelers: ';
-    }
-
-    function updateScoreboard() {
-      const scoreboard = document.getElementById('scoreboard');
-      scoreboard.innerHTML = '';
-      for (let player in scores) {
-        let scoreItem = document.createElement('li');
-        scoreItem.innerText = `${player}: ${scores[player]} punten`;
-        scoreItem.classList.add('scoreboard-item');
-        scoreboard.appendChild(scoreItem);
-      }
-    }
-
-    function saveScores() {
-      localStorage.setItem('scores', JSON.stringify(scores));
-    }
-
-    updateScoreboard();
-  </script>
-
+  <script src="app.js"></script>
 </body>
 </html>
