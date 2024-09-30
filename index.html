@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Padel Toernooi Scorebord</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      padding-top: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+    }
+
+    .player-btn {
+      width: 100%;
+      font-size: 18px;
+      padding: 15px;
+      margin-bottom: 10px;
+    }
+
+    .scoreboard-item {
+      font-size: 18px;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    h1, h3 {
+      margin-bottom: 20px;
+    }
+
+    .action-btn {
+      width: 100%;
+      font-size: 18px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container text-center">
+    <h1 class="text-primary">Padel Toernooi Scorebord</h1>
+
+    <h3 class="text-secondary">Selecteer twee spelers:</h3>
+    <div class="row">
+      <div class="col-6">
+        <button class="btn btn-outline-primary player-btn" onclick="selectPlayer('Dre')">Dre</button>
+      </div>
+      <div class="col-6">
+        <button class="btn btn-outline-primary player-btn" onclick="selectPlayer('Ben')">Ben</button>
+      </div>
+      <div class="col-6">
+        <button class="btn btn-outline-primary player-btn" onclick="selectPlayer('CP')">CP</button>
+      </div>
+      <div class="col-6">
+        <button class="btn btn-outline-primary player-btn" onclick="selectPlayer('Jokke')">Jokke</button>
+      </div>
+      <div class="col-6">
+        <button class="btn btn-outline-primary player-btn" onclick="selectPlayer('Swerts')">Swerts</button>
+      </div>
+    </div>
+
+    <h3 id="selected-players" class="text-info">Geselecteerde spelers: </h3>
+
+    <button class="btn btn-success action-btn" onclick="confirmWin()">Bevestig Winnaar</button>
+    <button class="btn btn-warning action-btn" onclick="undo()">Ongedaan maken</button>
+
+    <h3 class="text-secondary mt-4">Individuele Scores</h3>
+    <ul id="scoreboard" class="list-unstyled">
+      <!-- Scores zullen hier verschijnen -->
+    </ul>
+  </div>
+
+  <script>
+    let selectedPlayers = [];
+    let scores = JSON.parse(localStorage.getItem('scores')) || {
+      Dre: 0,
+      Ben: 0,
+      CP: 0,
+      Jokke: 0,
+      Swerts: 0
+    };
+
+    function selectPlayer(player) {
+      if (selectedPlayers.length < 2 && !selectedPlayers.includes(player)) {
+        selectedPlayers.push(player);
+        document.getElementById('selected-players').innerText = `Geselecteerde spelers: ${selectedPlayers.join(' en ')}`;
+      }
+    }
+
+    function confirmWin() {
+      if (selectedPlayers.length === 2) {
+        scores[selectedPlayers[0]] += 1;
+        scores[selectedPlayers[1]] += 1;
+        updateScoreboard();
+        saveScores();
+        selectedPlayers = [];
+        document.getElementById('selected-players').innerText = 'Geselecteerde spelers: ';
+      } else {
+        alert("Selecteer twee spelers!");
+      }
+    }
+
+    function undo() {
+      selectedPlayers = [];
+      document.getElementById('selected-players').innerText = 'Geselecteerde spelers: ';
+    }
+
+    function updateScoreboard() {
+      const scoreboard = document.getElementById('scoreboard');
+      scoreboard.innerHTML = '';
+      for (let player in scores) {
+        let scoreItem = document.createElement('li');
+        scoreItem.innerText = `${player}: ${scores[player]} punten`;
+        scoreItem.classList.add('scoreboard-item');
+        scoreboard.appendChild(scoreItem);
+      }
+    }
+
+    function saveScores() {
+      localStorage.setItem('scores', JSON.stringify(scores));
+    }
+
+    updateScoreboard();
+  </script>
+
+</body>
+</html>
