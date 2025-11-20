@@ -5,7 +5,6 @@ let scores = JSON.parse(localStorage.getItem('scores')) || {
   Dre: 0,
   Ben: 0,
   CP: 0,
-  Jokke: 0,
   Swerts: 0
 };
 
