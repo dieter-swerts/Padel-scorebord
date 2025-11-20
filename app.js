@@ -1,3 +1,9 @@
+// Jokke verwijderen uit oude lokale opslag
+if (scores.Jokke !== undefined) {
+  delete scores.Jokke;
+  localStorage.setItem('scores', JSON.stringify(scores));
+}
+
 // Array om geselecteerde spelers bij te houden
 let selectedPlayers = [];
 // Laad de scores uit de LocalStorage, of begin met 0 als er nog geen scores zijn
