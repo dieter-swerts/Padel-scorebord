@@ -57,6 +57,9 @@
         <button class="btn btn-outline-primary player-btn" onclick="selectPlayer('CP')">CP</button>
       </div>
       <div class="col-6">
+        <button class="btn btn-outline-primary player-btn" onclick="selectPlayer('Jokke')">Jokke</button>
+      </div>
+      <div class="col-6">
         <button class="btn btn-outline-primary player-btn" onclick="selectPlayer('Swerts')">Swerts</button>
       </div>
     </div>
@@ -65,14 +68,10 @@
 
     <button class="btn btn-success action-btn" onclick="confirmWin()">Bevestig Winnaar</button>
     <button class="btn btn-warning action-btn" onclick="undo()">Ongedaan maken</button>
-    
-    <!-- Nieuwe knoppen voor het ongedaan maken van de laatste score en het resetten van alle scores -->
-    <button class="btn btn-danger action-btn" onclick="undoLastScore()">Ongedaan maken laatste score</button>
-    <button class="btn btn-secondary action-btn" onclick="resetScores()">Reset alle scores</button>
 
     <h3 class="text-secondary mt-4">Individuele Scores</h3>
     <ul id="scoreboard" class="list-unstyled">
-      <!-- Scores zullen hier verschijnen -->
+      <!-- Scores verschijnen hier -->
     </ul>
   </div>
 
