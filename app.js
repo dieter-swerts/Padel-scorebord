@@ -1,7 +1,7 @@
-// Geselecteerde spelers
+// Huidige selectie van spelers
 let selectedPlayers = [];
 
-// Scoregegevens uit localStorage ophalen of initiëren
+// Laad bestaande scores of maak nieuwe aan
 let scores = JSON.parse(localStorage.getItem('scores')) || {
   Dre: 0,
   Ben: 0,
@@ -10,7 +10,7 @@ let scores = JSON.parse(localStorage.getItem('scores')) || {
   Swerts: 0
 };
 
-// Spelerselectie
+// Speler selecteren
 function selectPlayer(player) {
   if (selectedPlayers.length < 2 && !selectedPlayers.includes(player)) {
     selectedPlayers.push(player);
@@ -19,27 +19,28 @@ function selectPlayer(player) {
   }
 }
 
-// Score bevestigen
+// Bevestig winnaar → geef beide spelers een punt
 function confirmWin() {
   if (selectedPlayers.length === 2) {
-    scores[selectedPlayers[0]] += 1;
-    scores[selectedPlayers[1]] += 1;
-    updateScoreboard();
+    const [player1, player2] = selectedPlayers;
+    scores[player1]++;
+    scores[player2]++;
     saveScores();
+    updateScoreboard();
     selectedPlayers = [];
     document.getElementById('selected-players').innerText = 'Geselecteerde spelers: ';
   } else {
-    alert("Selecteer twee spelers!");
+    alert("Selecteer eerst twee verschillende spelers.");
   }
 }
 
-// Selectie ongedaan maken
+// Verwijder huidige selectie
 function undo() {
   selectedPlayers = [];
   document.getElementById('selected-players').innerText = 'Geselecteerde spelers: ';
 }
 
-// Scorebord updaten
+// Scorebord bijwerken
 function updateScoreboard() {
   const scoreboard = document.getElementById('scoreboard');
   scoreboard.innerHTML = '';
@@ -51,10 +52,10 @@ function updateScoreboard() {
   }
 }
 
-// Scores opslaan
+// Scores opslaan in browser
 function saveScores() {
   localStorage.setItem('scores', JSON.stringify(scores));
 }
 
-// Bij opstart scores tonen
+// Initialiseer bij laden
 updateScoreboard();
