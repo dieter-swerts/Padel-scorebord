@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Padel Toernooi Scorebord</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
   <style>
     body {
       background-color: #f8f9fa;
@@ -42,39 +42,27 @@
 </head>
 <body>
 
-  <div class="container text-center">
-    <h1 class="text-primary">Padel Toernooi Scorebord</h1>
+<div class="container text-center">
+  <h1 class="text-primary">Padel Toernooi Scorebord</h1>
 
-    <h3 class="text-secondary">Selecteer twee spelers:</h3>
-    <div class="row">
-      <div class="col-6">
-        <button class="btn btn-outline-primary player-btn" onclick="selectPlayer('Dre')">Dre</button>
-      </div>
-      <div class="col-6">
-        <button class="btn btn-outline-primary player-btn" onclick="selectPlayer('Ben')">Ben</button>
-      </div>
-      <div class="col-6">
-        <button class="btn btn-outline-primary player-btn" onclick="selectPlayer('CP')">CP</button>
-      </div>
-      <div class="col-6">
-        <button class="btn btn-outline-primary player-btn" onclick="selectPlayer('Jokke')">Jokke</button>
-      </div>
-      <div class="col-6">
-        <button class="btn btn-outline-primary player-btn" onclick="selectPlayer('Swerts')">Swerts</button>
-      </div>
-    </div>
-
-    <h3 id="selected-players" class="text-info">Geselecteerde spelers: </h3>
-
-    <button class="btn btn-success action-btn" onclick="confirmWin()">Bevestig Winnaar</button>
-    <button class="btn btn-warning action-btn" onclick="undo()">Ongedaan maken</button>
-
-    <h3 class="text-secondary mt-4">Individuele Scores</h3>
-    <ul id="scoreboard" class="list-unstyled">
-      <!-- Scores verschijnen hier -->
-    </ul>
+  <h3 class="text-secondary">Selecteer twee spelers:</h3>
+  <div class="row">
+    <div class="col-6"><button class="btn btn-outline-primary player-btn" onclick="selectPlayer('Dre')">Dre</button></div>
+    <div class="col-6"><button class="btn btn-outline-primary player-btn" onclick="selectPlayer('Ben')">Ben</button></div>
+    <div class="col-6"><button class="btn btn-outline-primary player-btn" onclick="selectPlayer('CP')">CP</button></div>
+    <div class="col-6"><button class="btn btn-outline-primary player-btn" onclick="selectPlayer('Jokke')">Jokke</button></div>
+    <div class="col-6"><button class="btn btn-outline-primary player-btn" onclick="selectPlayer('Swerts')">Swerts</button></div>
   </div>
 
-  <script src="app.js"></script>
+  <h3 id="selected-players" class="text-info">Geselecteerde spelers: </h3>
+
+  <button class="btn btn-success action-btn" onclick="confirmWin()">Bevestig Winnaar</button>
+  <button class="btn btn-warning action-btn" onclick="undo()">Ongedaan maken</button>
+
+  <h3 class="text-secondary mt-4">Individuele Scores</h3>
+  <ul id="scoreboard" class="list-unstyled"></ul>
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
